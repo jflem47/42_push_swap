@@ -6,7 +6,7 @@
 /*   By: jlemieux <jlemieux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 12:11:15 by jlemieux          #+#    #+#             */
-/*   Updated: 2023/03/24 18:08:21 by jlemieux         ###   ########.fr       */
+/*   Updated: 2023/03/30 16:12:25 by jlemieux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ int	main(int ac, char **av)
 		ft_putendl_fd("Error", 2);
 		return (FAILURE);
 	}
-	//test_operations(&env);
 	push_swap(&env);
 	free_exit(&env);
 	return (SUCCESS);

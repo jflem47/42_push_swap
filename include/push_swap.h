@@ -6,7 +6,7 @@
 /*   By: jlemieux <jlemieux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 12:09:27 by jlemieux          #+#    #+#             */
-/*   Updated: 2023/03/30 15:51:32 by jlemieux         ###   ########.fr       */
+/*   Updated: 2023/03/30 16:09:25 by jlemieux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ typedef struct s_rotation_data
 typedef struct s_algo_data
 {
 	t_list			*current;
+	t_data			*data;
 	t_list			*b;
 	t_list			*tmp;
 	t_data			*data_b;
