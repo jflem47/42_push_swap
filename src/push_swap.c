@@ -6,7 +6,7 @@
 /*   By: jlemieux <jlemieux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 12:13:30 by jlemieux          #+#    #+#             */
-/*   Updated: 2023/03/24 18:56:59 by jlemieux         ###   ########.fr       */
+/*   Updated: 2023/03/30 16:46:52 by jlemieux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	push_swap(t_env *env)
 	size = env->size_a;
 	if (is_sorted(env))
 		return ;
-	if (size < 11)
+	if (size <= 10)
 		small_size(env);
 	else
 		large_size(env);
