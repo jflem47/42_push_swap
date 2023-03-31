@@ -3,3 +3,5 @@ checker_Mac
 /push_swap_visualizer
 /.DS_Store
 lib/.DS_Store
+.gitignore
+*.o

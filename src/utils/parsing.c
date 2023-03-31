@@ -65,6 +65,7 @@ static int	parse_single(char **av, t_env *env)
 			return (FAILURE);
 		}
 		n_data->value = ft_atoi(env->args[index]);
+		n_data->n_index = index;
 		n_data->index = index++;
 		ft_lstadd_back(env->begin_a, ft_lstnew(n_data));
 		env->size_a++;
@@ -92,6 +93,7 @@ static int	parse_multiple(char **av, t_env *env)
 			free(n_data);
 			return (FAILURE);
 		}
+		n_data->n_index = index;
 		n_data->index = index++;
 		ft_lstadd_back(env->begin_a, ft_lstnew(n_data));
 		env->size_a++;

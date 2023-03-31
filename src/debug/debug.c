@@ -24,7 +24,7 @@ static void	print_stacks(t_env *env)
 	while (lst_a)
 	{
 		data = lst_a->content;
-		ft_printf("\t%d\n", (int)data->value);
+		ft_printf("\t%d\t%d\n", (int)data->value, (int)data->n_index);
 		lst_a = lst_a->next;
 	}
 	ft_printf("-----------\n");

@@ -91,5 +91,7 @@ void				small_size(t_env *env);
 void				large_size(t_env *env);
 void				sort_3(t_env *env);
 void				sort_2(t_env *env);
+void				bubble_sort(t_env *env);
+
 
 #endif

@@ -14,16 +14,19 @@
 
 static void	large_sort(t_env *env)
 {
+	(void)env;
 }
 
 static void	medium_sort(t_env *env)
 {
+	(void)env;
 }
 
 void	large_size(t_env *env)
 {
 	env->lowest = find_lowest(env);
 	env->highest = find_highest(env);
+	bubble_sort(env);
 	if ((env->size_a == 0 || env->size_a == 1) || is_sorted(env))
 		return ;
 	else if (env->size_a <= 100)
