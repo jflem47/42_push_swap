@@ -32,8 +32,8 @@ void	sort_3(t_env *env)
 	int	index;
 
 	update_index(env);
-	env->highest = find_highest(env);
-	index = highest_index(env);
+	env->highest = find_highest(env, 'a');
+	index = highest_index(env, 'a');
 	if (index != 2)
 	{
 		if (index == 1)

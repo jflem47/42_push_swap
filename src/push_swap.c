@@ -19,7 +19,7 @@ void	push_swap(t_env *env)
 	size = env->size_a;
 	if (is_sorted(env))
 		return ;
-	if (size <= 10)
+	if (size < 50)
 		small_size(env);
 	else
 		large_size(env);

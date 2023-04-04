@@ -1,6 +1,6 @@
 #include "push_swap.h"
 
-static t_list *find_elem(t_env *env, int index)
+t_list *find_elem(t_env *env, int index)
 {
 	t_list *current;
 	t_data *data;
@@ -14,7 +14,7 @@ static t_list *find_elem(t_env *env, int index)
 			return (current);
 		current = current->next;
 	}
-	return (*env->begin_a);
+	return (NULL);
 }
 
 void bubble_sort(t_env *env)
@@ -28,6 +28,7 @@ void bubble_sort(t_env *env)
 	tmp = 0;
 	while (i < env->size_a - 1)
 	{
+		j = 0;
 		while (j < env->size_a - i - 1)
 		{
 			env->algo_data->current = find_elem(env, j);
@@ -45,3 +46,47 @@ void bubble_sort(t_env *env)
 		i++;
 	}
  }
+
+ static void rotate_best(t_env *env, t_algo_data *data)
+ {
+	int i;
+
+	i = 0;
+	calculate_rotations(env, data->best_index, env->size_a / 2, 'a');
+	while (i < env->rotation_data->reps)
+	{
+		if (env->rotation_data->rev == 1)
+			rra(env);
+		else
+			ra(env);
+		i++;
+	}
+	pb(env);
+ }
+
+void make_best_move(t_env *env, int min, int max)
+{
+	int moves;
+	int i;
+	t_algo_data data;
+
+	i = min;
+	moves = INT32_MAX;
+	while (i < max)
+	{
+		data.current = find_elem(env, i);
+		if (data.current)
+		{
+			data.data = data.current->content;
+			data.index = data.data->index;
+			calculate_rotations(env, data.index, env->size_a / 2, 'a');
+			if (env->rotation_data->reps < moves)
+			{
+				moves = env->rotation_data->reps;
+				data.best_index = data.index;
+			}
+		}
+		i++;
+	}
+	rotate_best(env, &data);
+}

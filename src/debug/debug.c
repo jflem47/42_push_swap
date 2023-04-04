@@ -32,7 +32,7 @@ static void	print_stacks(t_env *env)
 	while (lst_b)
 	{
 		data = lst_b->content;
-		ft_printf("\t%d\n", (int)data->value);
+		ft_printf("\t%d\t%d\n", (int)data->value, (int)data->n_index);
 		lst_b = lst_b->next;
 	}
 	ft_printf("-----------\n");
@@ -41,7 +41,8 @@ static void	print_stacks(t_env *env)
 
 void	test_operations(t_env *env)
 {
-	ft_printf("TEST\n");
+	ft_printf("TEST\nBEFORE\n");
+	print_stacks(env);
 	push_swap(env);
 	print_stacks(env);
 }

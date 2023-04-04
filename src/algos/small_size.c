@@ -12,54 +12,52 @@
 
 #include "push_swap.h"
 
-static void	calculate_rotations(t_env *env, int index, int n_index, int lim)
+void	calculate_rotations(t_env *env, int n_index, int lim, char lst)
 {
-	int				diff;
 	t_rotation_data	*rot;
 
 	rot = env->rotation_data;
-	diff = index - n_index;
-	if (diff < 0 && (absolute(diff) <= lim))
+	if (n_index <= lim)
 	{
-		rot->reps = n_index - index;
+		rot->reps = n_index;
 		rot->rev = 0;
 	}
-	else if (diff < 0 && (absolute(diff) > lim))
+	else
 	{
-		rot->reps = ((env->size_a) - n_index) + index;
+		if (lst == 'a')
+			rot->reps = env->size_a - n_index;
+		else
+			rot->reps = env->size_b - n_index;
 		rot->rev = 1;
-	}
-	else if (diff > 0 && (absolute(diff) <= lim))
-	{
-		rot->reps = index - n_index;
-		rot->rev = 1;
-	}
-	else if (diff > 0 && (absolute(diff) > lim))
-	{
-		rot->reps = ((env->size_a) - index) + n_index;
-		rot->rev = 0;
 	}
 }
 
-static void	rotate(t_env *env)
+void	rotate(t_env *env, char lst)
 {
-	int		lim;
-	t_data	*data;
-	t_list	*current;
 	int		i;
 
-	lim = env->size_a / 2;
-	current = *env->begin_a;
-	data = current->content;
-	calculate_rotations(env, data->index, lowest_index(env), lim);
+	if (lst == 'a')
+		env->algo_data->lim = env->size_a / 2;
+	else
+		env->algo_data->lim= env->size_b / 2;
+	calculate_rotations(env, lowest_index(env), env->algo_data->lim, lst);
 	i = 0;
-	while (i < env->rotation_data->reps && !is_sorted(env))
+	while (i++ < env->rotation_data->reps)
 	{
 		if (env->rotation_data->rev == 1)
-			rra(env);
+		{
+			if (lst == 'a')
+				rra(env);
+			else
+				rrb(env);
+		}
 		else
-			ra(env);
-		i++;
+		{
+			if (lst == 'a')
+				ra(env);
+			else
+				rb(env);
+		}
 	}
 }
 
@@ -73,7 +71,7 @@ static void	sort_small(t_env *env)
 	else
 	{
 		env->lowest = find_lowest(env);
-		env->highest = find_highest(env);
+		env->highest = find_highest(env, 'a');
 		while (env->algo_data->current && !is_sorted(env))
 		{
 			env->algo_data->data = env->algo_data->current->content;
@@ -82,7 +80,7 @@ static void	sort_small(t_env *env)
 				pb(env);
 				break ;
 			}
-			rotate(env);
+			rotate(env, 'a');
 			env->algo_data->current = *env->begin_a;
 		}
 		if (!is_sorted(env))
@@ -95,7 +93,7 @@ static void	sort_small(t_env *env)
 void	small_size(t_env *env)
 {
 	env->lowest = find_lowest(env);
-	env->highest = find_highest(env);
+	env->highest = find_highest(env, 'a');
 	bubble_sort(env);
 	if ((env->size_a == 0 || env->size_a == 1) || is_sorted(env))
 		return ;

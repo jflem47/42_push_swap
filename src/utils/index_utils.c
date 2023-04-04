@@ -28,12 +28,15 @@ int	lowest_index(t_env *env)
 	return (0);
 }
 
-int	highest_index(t_env *env)
+int	highest_index(t_env *env, char lst)
 {
 	t_list	*current;
 	t_data	*data;
 
-	current = *env->begin_a;
+	if (lst == 'a')
+		current = *env->begin_a;
+	else
+		current = *env->begin_b;
 	while (current)
 	{
 		data = current->content;
@@ -44,14 +47,17 @@ int	highest_index(t_env *env)
 	return (0);
 }
 
-int	find_highest(t_env *env)
+int	find_highest(t_env *env, char lst)
 {
 	t_list	*current;
 	t_data	*data;
 	int		res;
 	int		tmp;
 
-	current = *env->begin_a;
+	if (lst == 'a')
+		current = *env->begin_a;
+	else
+		current = *env->begin_b;
 	res = 0;
 	while (current)
 	{

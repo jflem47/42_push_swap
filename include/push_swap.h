@@ -41,6 +41,9 @@ typedef struct s_algo_data
 	t_list			*tmp;
 	t_data			*data_b;
 	t_data			*data_tmp;
+	int 			index;
+	int 			best_index;
+	int 			lim;
 }					t_algo_data;
 
 typedef struct s_env
@@ -61,13 +64,18 @@ int					parse_args(int ac, char **av, t_env *env);
 void				free_all(t_list **lst);
 void				free_split(char **args);
 int					is_sorted(t_env *env);
-int					find_highest(t_env *env);
+int					find_highest(t_env *env, char lst);
 void				free_exit(t_env *env);
-int					highest_index(t_env *env);
+int					highest_index(t_env *env, char lst);
 int					lowest_index(t_env *env);
 int					absolute(int x);
 void				update_index(t_env *env);
 int					find_lowest(t_env *env);
+t_list				*find_elem(t_env *env, int index);
+void				calculate_rotations(t_env *env, int n_index, int lim, char lst);
+void				rotate(t_env *env, char lst);
+
+
 
 //OPERATIONS
 void				sa(t_env *env);
@@ -92,6 +100,6 @@ void				large_size(t_env *env);
 void				sort_3(t_env *env);
 void				sort_2(t_env *env);
 void				bubble_sort(t_env *env);
-
+void				make_best_move(t_env *env, int min, int max);
 
 #endif
