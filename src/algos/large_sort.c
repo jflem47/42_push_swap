@@ -1,80 +1,95 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   large_sort.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jlemieux <jlemieux@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/04/05 12:28:49 by jlemieux          #+#    #+#             */
+/*   Updated: 2023/04/05 16:58:00 by jlemieux         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
-t_list *find_elem(t_env *env, int index)
+t_list	*find_elem_nindex(t_env *env, int n_index, char lst)
 {
-	t_list *current;
-	t_data *data;
+	t_list	*current;
+	t_data	*data;
 
-	current = *env->begin_a;
+	if (lst == 'a')
+		current = *env->begin_a;
+	else
+		current = *env->begin_b;
 	data = NULL;
 	while (current)
 	{
 		data = current->content;
-		if (index == data->n_index)
+		if (n_index == data->n_index)
 			return (current);
 		current = current->next;
 	}
 	return (NULL);
 }
 
-void bubble_sort(t_env *env)
- {
+void	bubble_sort(t_env *env)
+{
 	int	i;
 	int	j;
-	int tmp;
 
 	i = 0;
 	j = 0;
-	tmp = 0;
 	while (i < env->size_a - 1)
 	{
 		j = 0;
 		while (j < env->size_a - i - 1)
 		{
-			env->algo_data->current = find_elem(env, j);
-			env->algo_data->tmp = find_elem(env, j + 1);
-			env->algo_data->data = env->algo_data->current->content;
-			env->algo_data->data_tmp = env->algo_data->tmp->content;
-			if (env->algo_data->data->value > env->algo_data->data_tmp->value)
-			{
-				tmp = env->algo_data->data->n_index;
-				env->algo_data->data->n_index = env->algo_data->data_tmp->n_index;
-				env->algo_data->data_tmp->n_index = tmp;
-			}
+			set_variables_bubblesort(env, j);
 			j++;
 		}
 		i++;
 	}
- }
+}
 
- static void rotate_best(t_env *env, t_algo_data *data)
- {
-	int i;
+void	rotate_best(t_env *env, int index, char lst)
+{
+	int	i;
 
 	i = 0;
-	calculate_rotations(env, data->best_index, env->size_a / 2, 'a');
-	while (i < env->rotation_data->reps)
+	if (lst == 'a')
+		calculate_rotations(env, index, env->size_a / 2, 'a');
+	else
+		calculate_rotations(env, index, env->size_b / 2, 'b');
+	while (i++ < env->rotation_data->reps)
 	{
 		if (env->rotation_data->rev == 1)
-			rra(env);
+		{
+			if (lst == 'a')
+				rra(env);
+			else
+				rrb(env);
+		}
 		else
-			ra(env);
-		i++;
+		{
+			if (lst == 'a')
+				ra(env);
+			else
+				rb(env);
+		}
 	}
-	pb(env);
- }
+}
 
-void make_best_move(t_env *env, int min, int max)
+void	make_best_move(t_env *env, int min, int max)
 {
-	int moves;
-	int i;
-	t_algo_data data;
+	int			moves;
+	int			i;
+	t_algo_data	data;
 
 	i = min;
 	moves = INT32_MAX;
 	while (i < max)
 	{
-		data.current = find_elem(env, i);
+		data.current = find_elem_nindex(env, i, 'a');
 		if (data.current)
 		{
 			data.data = data.current->content;
@@ -88,5 +103,6 @@ void make_best_move(t_env *env, int min, int max)
 		}
 		i++;
 	}
-	rotate_best(env, &data);
+	rotate_best(env, data.best_index, 'a');
+	pb(env);
 }

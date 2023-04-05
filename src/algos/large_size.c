@@ -6,15 +6,15 @@
 /*   By: jlemieux <jlemieux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 16:16:16 by jlemieux          #+#    #+#             */
-/*   Updated: 2023/03/30 17:30:49 by jlemieux         ###   ########.fr       */
+/*   Updated: 2023/04/05 15:04:02 by jlemieux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static void sort_back(t_env *env)
+static void	sort_back(t_env *env)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (env->size_b > 0)
@@ -31,13 +31,13 @@ static void sort_back(t_env *env)
 		}
 		pa(env);
 	}
-} 
+}
 
 static void	large_sort(t_env *env)
 {
-	int i;
-	int j;
-	int max;
+	int	i;
+	int	j;
+	int	max;
 
 	max = env->size_a / 11 + 1;
 	j = 0;
@@ -57,21 +57,18 @@ static void	large_sort(t_env *env)
 
 static void	medium_sort(t_env *env)
 {
-	int i;
-	int j;
-	int max;
+	int	n_index;
 
-	max = env->size_a / 5;
-	j = 0;
-	i = 0;
-	while (j < 5)
+	while (env->size_a > 0)
 	{
-		i = 0;
-		while (i++ < max)
-			make_best_move(env, j * max, (j + 1) * max);
-		j++;
+		plot_best_move(env);
+		rotate_best(env, env->next_move, 'a');
+		env->algo_data->current = *env->begin_a;
+		env->algo_data->data = env->algo_data->current->content;
+		n_index = env->algo_data->data->n_index;
+		rotate_best(env, find_neighbor(env, n_index), 'b');
+		pb(env);
 	}
-	sort_back(env);
 }
 
 void	large_size(t_env *env)

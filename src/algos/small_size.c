@@ -6,40 +6,40 @@
 /*   By: jlemieux <jlemieux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 16:12:33 by jlemieux          #+#    #+#             */
-/*   Updated: 2023/03/30 16:12:05 by jlemieux         ###   ########.fr       */
+/*   Updated: 2023/04/05 14:43:11 by jlemieux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	calculate_rotations(t_env *env, int n_index, int lim, char lst)
+void	calculate_rotations(t_env *env, int index, int lim, char lst)
 {
 	t_rotation_data	*rot;
 
 	rot = env->rotation_data;
-	if (n_index <= lim)
+	if (index <= lim)
 	{
-		rot->reps = n_index;
+		rot->reps = index;
 		rot->rev = 0;
 	}
 	else
 	{
 		if (lst == 'a')
-			rot->reps = env->size_a - n_index;
+			rot->reps = env->size_a - index;
 		else
-			rot->reps = env->size_b - n_index;
+			rot->reps = env->size_b - index;
 		rot->rev = 1;
 	}
 }
 
 void	rotate(t_env *env, char lst)
 {
-	int		i;
+	int	i;
 
 	if (lst == 'a')
 		env->algo_data->lim = env->size_a / 2;
 	else
-		env->algo_data->lim= env->size_b / 2;
+		env->algo_data->lim = env->size_b / 2;
 	calculate_rotations(env, lowest_index(env), env->algo_data->lim, lst);
 	i = 0;
 	while (i++ < env->rotation_data->reps)
