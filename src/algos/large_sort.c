@@ -66,16 +66,16 @@ void	rotate_best(t_env *env, char lst)
 		if (rot->rev == 1)
 		{
 			if (lst == 'a')
-				rra(env);
+				make_move(RRA, env);
 			else
-				rrb(env);
+				make_move(RRB, env);
 		}
 		else
 		{
 			if (lst == 'a')
-				ra(env);
+				make_move(RA, env);
 			else
-				rb(env);
+				make_move(RB, env);
 		}
 	}
 }

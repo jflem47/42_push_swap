@@ -47,9 +47,9 @@ void	rotate(t_env *env)
 	while (i++ < rot->reps)
 	{
 		if (rot->rev == 1)
-			rra(env);
+			make_move(RRA, env);
 		else
-			ra(env);
+			make_move(RA, env);
 	}
 }
 
@@ -69,7 +69,7 @@ static void	sort_small(t_env *env)
 			env->algo_data->data = env->algo_data->current->content;
 			if (env->algo_data->data->value == env->lowest)
 			{
-				pb(env);
+				make_move(PB, env);
 				break ;
 			}
 			rotate(env);
@@ -78,7 +78,7 @@ static void	sort_small(t_env *env)
 		if (!is_sorted(env))
 			sort_small(env);
 		if (env->size_b != 0)
-			pa(env);
+			make_move(PA, env);
 	}
 }
 

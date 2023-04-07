@@ -12,32 +12,32 @@
 
 #include "push_swap.h"
 
-// static void	rotate_same(t_env *env)
-// {
-// 	int	i;
-// 	int	reps_both;
+static void	rotate_same(t_env *env)
+{
+	int	i;
+	int	reps_both;
 
-// 	i = 0;
-// 	if (env->rot_data_a->reps > env->rot_data_b->reps)
-// 	{
-// 		reps_both = env->rot_data_b->reps;
-// 		env->rot_data_a->reps -= reps_both;
-// 		rotate_best(env, 'a');
-// 	}
-// 	else
-// 	{
-// 		reps_both = env->rot_data_b->reps;
-// 		env->rot_data_a->reps -= reps_both;
-// 		rotate_best(env, 'b');
-// 	}
-// 	while (i++ < reps_both)
-// 	{
-// 		if (env->rot_data_b->rev == 1)
-// 			rrr(env);
-// 		else
-// 			rr(env);
-// 	}
-// }
+	i = 0;
+	if (env->rot_data_a->reps > env->rot_data_b->reps)
+	{
+		reps_both = env->rot_data_b->reps;
+		env->rot_data_a->reps -= reps_both;
+		rotate_best(env, 'a');
+	}
+	else
+	{
+		reps_both = env->rot_data_a->reps;
+		env->rot_data_b->reps -= reps_both;
+		rotate_best(env, 'b');
+	}
+	while (i++ < reps_both)
+	{
+		if (env->rot_data_b->rev == 1)
+			make_move(RRR, env);
+		else
+			make_move(RR, env);
+	}
+}
 
 static void	large_sort(t_env *env)
 {
@@ -51,22 +51,20 @@ static void	large_sort(t_env *env)
 		env->algo_data->data = env->algo_data->current->content;
 		n_index = env->algo_data->data->n_index;
 		calculate_rotations(env, find_neighbor(env, n_index), env->size_b / 2,
-				'b');
-		// if (env->rot_data_a->rev && env->rot_data_b->rev)
-		// 	rotate_same(env);
-		// else
-		// {
-		// 	rotate_best(env, 'b');
-		// 	rotate_best(env, 'a');
-		// }
-		rotate_best(env, 'a');
-		rotate_best(env, 'b');
-		pb(env);
+			'b');
+		if (env->rot_data_a->rev == env->rot_data_b->rev)
+			rotate_same(env);
+		else
+		{
+			rotate_best(env, 'b');
+			rotate_best(env, 'a');
+		}
+		make_move(PB, env);
 	}
 	calculate_rotations(env, highest_index(env, 'b'), env->size_b / 2, 'b');
 	rotate_best(env, 'b');
 	while (env->size_b > 0)
-		pa(env);
+		make_move(PA, env);
 }
 
 void	large_size(t_env *env)

@@ -24,7 +24,7 @@ void	sort_2(t_env *env)
 	c_1 = one->content;
 	c_2 = two->content;
 	if (c_1->value > c_2->value)
-		sa(env);
+		make_move(SA, env);
 }
 
 void	sort_3(t_env *env)
@@ -37,9 +37,9 @@ void	sort_3(t_env *env)
 	if (index != 2)
 	{
 		if (index == 1)
-			rra(env);
+			make_move(RRA, env);
 		else
-			ra(env);
+			make_move(RA, env);
 	}
 	sort_2(env);
 }

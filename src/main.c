@@ -32,7 +32,6 @@ int	main(int ac, char **av)
 		return (FAILURE);
 	}
 	push_swap(&env);
-	//test_operations(&env);
 	free_exit(&env);
 	return (SUCCESS);
 }

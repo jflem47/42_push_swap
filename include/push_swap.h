@@ -16,6 +16,18 @@
 # define SUCCESS 0
 # define FAILURE 1
 
+# define SA 0
+# define SB 1
+# define SS 3
+# define PA 4
+# define PB 5
+# define RA 6
+# define RB 7
+# define RR 8
+# define RRA 9
+# define RRB 10
+# define RRR 11
+
 # include "ft_printf.h"
 # include "libft.h"
 
@@ -97,6 +109,8 @@ void				rr(t_env *env);
 void				rra(t_env *env);
 void				rrb(t_env *env);
 void				rrr(t_env *env);
+void				print_op(int op);
+void				make_move(int op, t_env *env);
 
 //DEBUG
 void				test_operations(t_env *env);

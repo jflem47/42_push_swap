@@ -21,7 +21,6 @@ void	ra(t_env *env)
 	first->next = NULL;
 	ft_lstadd_back(env->begin_a, first);
 	update_index(env);
-	ft_printf("ra\n");
 }
 
 void	rb(t_env *env)
@@ -33,14 +32,12 @@ void	rb(t_env *env)
 	first->next = NULL;
 	ft_lstadd_back(env->begin_b, first);
 	update_index(env);
-	ft_printf("rb\n");
 }
 
 void	rr(t_env *env)
 {
 	ra(env);
 	rb(env);
-	ft_printf("rr\n");
 }
 
 void	rra(t_env *env)
@@ -58,7 +55,6 @@ void	rra(t_env *env)
 	ft_lstadd_front(env->begin_a, last);
 	*env->begin_a = last;
 	update_index(env);
-	ft_printf("rra\n");
 }
 
 void	rrb(t_env *env)
@@ -76,5 +72,4 @@ void	rrb(t_env *env)
 	ft_lstadd_front(env->begin_b, last);
 	*env->begin_b = last;
 	update_index(env);
-	ft_printf("rrb\n");
 }

@@ -22,7 +22,6 @@ void	sa(t_env *env)
 	first->next = tmp->next;
 	ft_lstadd_front(env->begin_a, tmp);
 	update_index(env);
-	ft_printf("sa\n");
 }
 
 void	sb(t_env *env)
@@ -35,14 +34,12 @@ void	sb(t_env *env)
 	first->next = tmp->next;
 	ft_lstadd_front(env->begin_b, tmp);
 	update_index(env);
-	ft_printf("sb\n");
 }
 
 void	ss(t_env *env)
 {
 	sa(env);
 	sb(env);
-	ft_printf("ss\n");
 }
 
 void	pa(t_env *env)
@@ -58,7 +55,6 @@ void	pa(t_env *env)
 	}
 	ft_lstadd_front(env->begin_a, first);
 	update_index(env);
-	ft_printf("pa\n");
 }
 
 void	pb(t_env *env)
@@ -74,5 +70,4 @@ void	pb(t_env *env)
 	}
 	ft_lstadd_front(env->begin_b, first);
 	update_index(env);
-	ft_printf("pb\n");
 }

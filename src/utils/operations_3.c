@@ -16,5 +16,57 @@ void	rrr(t_env *env)
 {
 	rra(env);
 	rrb(env);
-	ft_printf("rrr\n");
+}
+
+void	print_op(int op)
+{
+	if (op == SA)
+		ft_printf("sa\n");
+	else if (op == SB)
+		ft_printf("sb\n");
+	else if (op == SS)
+		ft_printf("ss\n");
+	else if (op == PA)
+		ft_printf("pa\n");
+	else if (op == PB)
+		ft_printf("pb\n");
+	else if (op == RA)
+		ft_printf("ra\n");
+	else if (op == RB)
+		ft_printf("rb\n");
+	else if (op == RR)
+		ft_printf("rr\n");
+	else if (op == RRA)
+		ft_printf("rra\n");
+	else if (op == RRB)
+		ft_printf("rrb\n");
+	else if (op == RRR)
+		ft_printf("rrr\n");
+}
+
+void	make_move(int op, t_env *env)
+{
+	if (op == SA)
+		sa(env);
+	else if (op == SB)
+		sb(env);
+	else if (op == SS)
+		ss(env);
+	else if (op == PA)
+		pa(env);
+	else if (op == PB)
+		pb(env);
+	else if (op == RA)
+		ra(env);
+	else if (op == RB)
+		rb(env);
+	else if (op == RR)
+		rr(env);
+	else if (op == RRA)
+		rra(env);
+	else if (op == RRB)
+		rrb(env);
+	else if (op == RRR)
+		rrr(env);
+	print_op(op);
 }

@@ -78,8 +78,8 @@ int	scenario_cost(t_env *env, int index_a)
 	neighbor = find_neighbor(env, env->algo_data->data->n_index);
 	calculate_rotations(env, neighbor, env->size_b / 2, 'b');
 	cost_b = env->rot_data_b->reps;
-	// if (env->rot_data_a->rev == env->rot_data_b->rev)
-	// 	return ((cost_a + cost_b) - min(cost_a, cost_b));
+	if (env->rot_data_a->rev == env->rot_data_b->rev)
+		return ((cost_a + cost_b) - min(cost_a, cost_b));
 	return (cost_a + cost_b);
 }
 
