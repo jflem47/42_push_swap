@@ -6,7 +6,7 @@
 /*   By: jlemieux <jlemieux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 12:34:10 by jlemieux          #+#    #+#             */
-/*   Updated: 2023/04/05 14:44:03 by jlemieux         ###   ########.fr       */
+/*   Updated: 2023/04/06 20:00:58 by jlemieux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,8 @@ int	find_neighbor(t_env *env, int n_index)
 {
 	int	res;
 
+	if (n_index < find_lowest(env, 'b'))
+		return (highest_index(env, 'b'));
 	res = n_index - 1;
 	env->algo_data->current = find_elem_nindex(env, res, 'b');
 	while (!env->algo_data->current && res >= 0)
@@ -58,8 +60,6 @@ int	find_neighbor(t_env *env, int n_index)
 		res--;
 		env->algo_data->current = find_elem_nindex(env, res, 'b');
 	}
-	if (res == -1)
-		return (0);
 	env->algo_data->data = env->algo_data->current->content;
 	return (env->algo_data->data->index);
 }
@@ -71,13 +71,15 @@ int	scenario_cost(t_env *env, int index_a)
 	int	neighbor;
 
 	calculate_rotations(env, index_a, env->size_a / 2, 'a');
-	cost_a = env->rotation_data->reps;
+	cost_a = env->rot_data_a->reps;
 	env->algo_data->current_prospect_a = index_a;
 	env->algo_data->current = find_elem_index(env, index_a, 'a');
 	env->algo_data->data = env->algo_data->current->content;
 	neighbor = find_neighbor(env, env->algo_data->data->n_index);
 	calculate_rotations(env, neighbor, env->size_b / 2, 'b');
-	cost_b = env->rotation_data->reps;
+	cost_b = env->rot_data_b->reps;
+	// if (env->rot_data_a->rev == env->rot_data_b->rev)
+	// 	return ((cost_a + cost_b) - min(cost_a, cost_b));
 	return (cost_a + cost_b);
 }
 

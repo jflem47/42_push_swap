@@ -6,7 +6,7 @@
 /*   By: jlemieux <jlemieux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/24 16:43:45 by jlemieux          #+#    #+#             */
-/*   Updated: 2023/03/30 15:51:49 by jlemieux         ###   ########.fr       */
+/*   Updated: 2023/04/06 19:04:57 by jlemieux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ int	highest_index(t_env *env, char lst)
 	t_list	*current;
 	t_data	*data;
 
+	env->highest = find_highest(env, lst);
 	if (lst == 'a')
 		current = *env->begin_a;
 	else
@@ -96,10 +97,10 @@ void	update_index(t_env *env)
 	env->size_b = i;
 }
 
-int	absolute(int x)
+int	min(int x, int y)
 {
-	if (x < 0)
-		return (-x);
-	else
+	if (x < y)
 		return (x);
+	else
+		return (y);
 }

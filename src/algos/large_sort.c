@@ -6,7 +6,7 @@
 /*   By: jlemieux <jlemieux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 12:28:49 by jlemieux          #+#    #+#             */
-/*   Updated: 2023/04/05 16:58:00 by jlemieux         ###   ########.fr       */
+/*   Updated: 2023/04/06 19:26:58 by jlemieux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,18 +51,19 @@ void	bubble_sort(t_env *env)
 	}
 }
 
-void	rotate_best(t_env *env, int index, char lst)
+void	rotate_best(t_env *env, char lst)
 {
-	int	i;
+	int				i;
+	t_rotation_data	*rot;
 
 	i = 0;
 	if (lst == 'a')
-		calculate_rotations(env, index, env->size_a / 2, 'a');
+		rot = env->rot_data_a;
 	else
-		calculate_rotations(env, index, env->size_b / 2, 'b');
-	while (i++ < env->rotation_data->reps)
+		rot = env->rot_data_b;
+	while (i++ < rot->reps)
 	{
-		if (env->rotation_data->rev == 1)
+		if (rot->rev == 1)
 		{
 			if (lst == 'a')
 				rra(env);
@@ -77,32 +78,4 @@ void	rotate_best(t_env *env, int index, char lst)
 				rb(env);
 		}
 	}
-}
-
-void	make_best_move(t_env *env, int min, int max)
-{
-	int			moves;
-	int			i;
-	t_algo_data	data;
-
-	i = min;
-	moves = INT32_MAX;
-	while (i < max)
-	{
-		data.current = find_elem_nindex(env, i, 'a');
-		if (data.current)
-		{
-			data.data = data.current->content;
-			data.index = data.data->index;
-			calculate_rotations(env, data.index, env->size_a / 2, 'a');
-			if (env->rotation_data->reps < moves)
-			{
-				moves = env->rotation_data->reps;
-				data.best_index = data.index;
-			}
-		}
-		i++;
-	}
-	rotate_best(env, data.best_index, 'a');
-	pb(env);
 }

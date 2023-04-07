@@ -6,7 +6,7 @@
 /*   By: jlemieux <jlemieux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 15:57:58 by jlemieux          #+#    #+#             */
-/*   Updated: 2023/03/30 14:40:43 by jlemieux         ###   ########.fr       */
+/*   Updated: 2023/04/06 18:49:21 by jlemieux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,14 +66,17 @@ int	is_sorted(t_env *env)
 		return (0);
 }
 
-int	find_lowest(t_env *env)
+int	find_lowest(t_env *env, char lst)
 {
 	t_list	*current;
 	t_data	*data;
 	int		res;
 	int		tmp;
 
-	current = *env->begin_a;
+	if (lst == 'a')
+		current = *env->begin_a;
+	else
+		current = *env->begin_b;
 	res = INT32_MAX;
 	while (current)
 	{
@@ -91,5 +94,6 @@ void	free_exit(t_env *env)
 	free_all(env->begin_a);
 	free_all(env->begin_b);
 	free(env->algo_data);
-	free(env->rotation_data);
+	free(env->rot_data_a);
+	free(env->rot_data_b);
 }

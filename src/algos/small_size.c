@@ -6,7 +6,7 @@
 /*   By: jlemieux <jlemieux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 16:12:33 by jlemieux          #+#    #+#             */
-/*   Updated: 2023/04/05 14:43:11 by jlemieux         ###   ########.fr       */
+/*   Updated: 2023/04/06 19:25:58 by jlemieux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,10 @@ void	calculate_rotations(t_env *env, int index, int lim, char lst)
 {
 	t_rotation_data	*rot;
 
-	rot = env->rotation_data;
+	if (lst == 'a')
+		rot = env->rot_data_a;
+	else
+		rot = env->rot_data_b;
 	if (index <= lim)
 	{
 		rot->reps = index;
@@ -32,32 +35,21 @@ void	calculate_rotations(t_env *env, int index, int lim, char lst)
 	}
 }
 
-void	rotate(t_env *env, char lst)
+void	rotate(t_env *env)
 {
-	int	i;
+	int				i;
+	t_rotation_data	*rot;
 
-	if (lst == 'a')
-		env->algo_data->lim = env->size_a / 2;
-	else
-		env->algo_data->lim = env->size_b / 2;
-	calculate_rotations(env, lowest_index(env), env->algo_data->lim, lst);
+	env->algo_data->lim = env->size_a / 2;
+	calculate_rotations(env, lowest_index(env), env->algo_data->lim, 'a');
+	rot = env->rot_data_a;
 	i = 0;
-	while (i++ < env->rotation_data->reps)
+	while (i++ < rot->reps)
 	{
-		if (env->rotation_data->rev == 1)
-		{
-			if (lst == 'a')
-				rra(env);
-			else
-				rrb(env);
-		}
+		if (rot->rev == 1)
+			rra(env);
 		else
-		{
-			if (lst == 'a')
-				ra(env);
-			else
-				rb(env);
-		}
+			ra(env);
 	}
 }
 
@@ -70,7 +62,7 @@ static void	sort_small(t_env *env)
 		return ;
 	else
 	{
-		env->lowest = find_lowest(env);
+		env->lowest = find_lowest(env, 'a');
 		env->highest = find_highest(env, 'a');
 		while (env->algo_data->current && !is_sorted(env))
 		{
@@ -80,7 +72,7 @@ static void	sort_small(t_env *env)
 				pb(env);
 				break ;
 			}
-			rotate(env, 'a');
+			rotate(env);
 			env->algo_data->current = *env->begin_a;
 		}
 		if (!is_sorted(env))
@@ -92,7 +84,7 @@ static void	sort_small(t_env *env)
 
 void	small_size(t_env *env)
 {
-	env->lowest = find_lowest(env);
+	env->lowest = find_lowest(env, 'a');
 	env->highest = find_highest(env, 'a');
 	bubble_sort(env);
 	if ((env->size_a == 0 || env->size_a == 1) || is_sorted(env))

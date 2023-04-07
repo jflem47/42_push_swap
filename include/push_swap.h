@@ -6,7 +6,7 @@
 /*   By: jlemieux <jlemieux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 12:09:27 by jlemieux          #+#    #+#             */
-/*   Updated: 2023/04/05 14:24:01 by jlemieux         ###   ########.fr       */
+/*   Updated: 2023/04/06 19:27:06 by jlemieux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,9 @@ typedef struct s_env
 	int				highest;
 	int				lowest;
 	t_algo_data		*algo_data;
-	t_rotation_data	*rotation_data;
+	t_rotation_data	*rot_data_a;
+	t_rotation_data	*rot_data_b;
+	int				rr;
 	int				next_move;
 }					t_env;
 
@@ -70,16 +72,16 @@ int					find_highest(t_env *env, char lst);
 void				free_exit(t_env *env);
 int					highest_index(t_env *env, char lst);
 int					lowest_index(t_env *env);
-int					absolute(int x);
+int					min(int x, int y);
 void				update_index(t_env *env);
-int					find_lowest(t_env *env);
+int					find_lowest(t_env *env, char lst);
 t_list				*find_elem_nindex(t_env *env, int n_index, char lst);
 void				calculate_rotations(t_env *env, int n_index, int lim,
 						char lst);
-void				rotate(t_env *env, char lst);
+void				rotate(t_env *env);
 void				set_variables_bubblesort(t_env *env, int j);
 void				plot_best_move(t_env *env);
-void				rotate_best(t_env *env, int index, char lst);
+void				rotate_best(t_env *env, char lst);
 int					find_neighbor(t_env *env, int index);
 t_list				*find_elem_index(t_env *env, int index, char lst);
 
@@ -106,6 +108,5 @@ void				large_size(t_env *env);
 void				sort_3(t_env *env);
 void				sort_2(t_env *env);
 void				bubble_sort(t_env *env);
-void				make_best_move(t_env *env, int min, int max);
 
 #endif
