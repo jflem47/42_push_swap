@@ -13,6 +13,10 @@
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 
+# ifndef INT32_MAX
+#  define INT32_MAX 2147483647
+# endif
+
 # define SUCCESS 0
 # define FAILURE 1
 
