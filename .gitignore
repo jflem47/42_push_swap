@@ -7,3 +7,4 @@ lib/.DS_Store
 .gitignore
 *.o
 *.a
+push_swap
