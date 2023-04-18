@@ -19,6 +19,7 @@ SRCS 			=	src/main.c \
 					src/algos/small_sort.c \
 					src/algos/large_sort.c \
 					src/utils/algo_utils.c \
+					src/utils/struct_alloc.c \
 
 OBJS			=	$(SRCS:%.c=%.o)
 

@@ -6,7 +6,7 @@
 /*   By: jlemieux <jlemieux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 13:34:44 by jlemieux          #+#    #+#             */
-/*   Updated: 2023/03/24 18:57:45 by jlemieux         ###   ########.fr       */
+/*   Updated: 2023/04/18 15:48:05 by jlemieux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ void	test_operations(t_env *env)
 {
 	ft_printf("TEST\nBEFORE\n");
 	print_stacks(env);
+	ft_printf("AFTER SORT:\n");
 	push_swap(env);
 	print_stacks(env);
 }

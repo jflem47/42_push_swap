@@ -1,24 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_calloc.c                                        :+:      :+:    :+:   */
+/*   struct_alloc.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jlemieux <jlemieux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/14 16:51:40 by jlemieux          #+#    #+#             */
-/*   Updated: 2023/04/18 16:37:04 by jlemieux         ###   ########.fr       */
+/*   Created: 2023/04/18 16:26:11 by jlemieux          #+#    #+#             */
+/*   Updated: 2023/04/18 17:24:23 by jlemieux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "push_swap.h"
 
-void	*ft_calloc(size_t count, size_t size)
+void	allocate_algo_data(t_algo_data *algo_data)
 {
-	void	*res;
-
-	res = malloc(count * size);
-	while (!res)
-		res = malloc(count * size);
-	ft_bzero(res, count * size);
-	return (res);
+	algo_data->current = NULL;
+	algo_data->data = NULL;
+	algo_data->b = NULL;
+	algo_data->tmp = NULL;
+	algo_data->data_b = NULL;
+	algo_data->data_tmp = NULL;
 }

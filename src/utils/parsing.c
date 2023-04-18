@@ -6,7 +6,7 @@
 /*   By: jlemieux <jlemieux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 12:13:27 by jlemieux          #+#    #+#             */
-/*   Updated: 2023/04/18 14:25:21 by jlemieux         ###   ########.fr       */
+/*   Updated: 2023/04/18 16:38:18 by jlemieux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ static int	parse_single(char **av, t_env *env)
 	index = 0;
 	while (env->args[index])
 	{
-		n_data = (t_data *)ft_calloc(1, sizeof(t_data *));
+		n_data = ft_calloc(1, sizeof(t_data));
 		if (!n_data)
 			return (free_split(env->args), free(n_data), FAILURE);
 		n_data->value = ft_atoi(env->args[index]);

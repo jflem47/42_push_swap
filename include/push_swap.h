@@ -6,7 +6,7 @@
 /*   By: jlemieux <jlemieux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 12:09:27 by jlemieux          #+#    #+#             */
-/*   Updated: 2023/04/06 19:27:06 by jlemieux         ###   ########.fr       */
+/*   Updated: 2023/04/18 17:24:30 by jlemieux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,6 +100,7 @@ void				plot_best_move(t_env *env);
 void				rotate_best(t_env *env, char lst);
 int					find_neighbor(t_env *env, int index);
 t_list				*find_elem_index(t_env *env, int index, char lst);
+void				allocate_algo_data(t_algo_data *algo_data);
 
 //OPERATIONS
 void				sa(t_env *env);

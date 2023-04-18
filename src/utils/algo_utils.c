@@ -6,7 +6,7 @@
 /*   By: jlemieux <jlemieux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 12:34:10 by jlemieux          #+#    #+#             */
-/*   Updated: 2023/04/06 20:00:58 by jlemieux         ###   ########.fr       */
+/*   Updated: 2023/04/18 17:56:33 by jlemieux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,15 +51,15 @@ int	find_neighbor(t_env *env, int n_index)
 {
 	int	res;
 
-	if (n_index < find_lowest(env, 'b'))
-		return (highest_index(env, 'b'));
 	res = n_index - 1;
 	env->algo_data->current = find_elem_nindex(env, res, 'b');
-	while (!env->algo_data->current && res >= 0)
+	while (!env->algo_data->current && res > 0)
 	{
 		res--;
 		env->algo_data->current = find_elem_nindex(env, res, 'b');
 	}
+	if (!env->algo_data->current)
+		return (highest_index(env, 'b'));
 	env->algo_data->data = env->algo_data->current->content;
 	return (env->algo_data->data->index);
 }

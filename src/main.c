@@ -6,7 +6,7 @@
 /*   By: jlemieux <jlemieux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 12:11:15 by jlemieux          #+#    #+#             */
-/*   Updated: 2023/04/18 13:03:27 by jlemieux         ###   ########.fr       */
+/*   Updated: 2023/04/18 16:34:42 by jlemieux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ int	main(int ac, char **av)
 	env.algo_data = ft_calloc(1, sizeof(t_algo_data));
 	env.rot_data_a = ft_calloc(1, sizeof(t_rotation_data));
 	env.rot_data_b = ft_calloc(1, sizeof(t_rotation_data));
+	allocate_algo_data(env.algo_data);
 	parsing = parse_args(ac, av, &env);
 	if (parsing == FAILURE)
 	{
