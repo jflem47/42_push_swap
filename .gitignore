@@ -1,6 +1,7 @@
 checker_Mac
 /.vscode
 /push_swap_visualizer
+/push_swap_tester
 /.DS_Store
 lib/.DS_Store
 .gitignore
