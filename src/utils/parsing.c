@@ -6,7 +6,7 @@
 /*   By: jlemieux <jlemieux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 12:13:27 by jlemieux          #+#    #+#             */
-/*   Updated: 2023/04/18 16:38:18 by jlemieux         ###   ########.fr       */
+/*   Updated: 2023/04/19 12:23:26 by jlemieux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,7 @@ static int	parse_single(char **av, t_env *env)
 		ft_lstadd_back(env->begin_a, ft_lstnew(n_data));
 		env->size_a++;
 	}
+	env->size_b = 0;
 	free_split(env->args);
 	return (SUCCESS);
 }
@@ -95,6 +96,7 @@ static int	parse_multiple(char **av, int ac, t_env *env)
 		ft_lstadd_back(env->begin_a, ft_lstnew(n_data));
 		env->size_a++;
 	}
+	env->size_b = 0;
 	return (SUCCESS);
 }
 

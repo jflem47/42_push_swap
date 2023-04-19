@@ -6,7 +6,7 @@
 /*   By: jlemieux <jlemieux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/24 16:43:45 by jlemieux          #+#    #+#             */
-/*   Updated: 2023/04/06 19:04:57 by jlemieux         ###   ########.fr       */
+/*   Updated: 2023/04/19 12:52:48 by jlemieux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ int	find_highest(t_env *env, char lst)
 		current = *env->begin_a;
 	else
 		current = *env->begin_b;
-	res = 0;
+	res = INT32_MIN;
 	while (current)
 	{
 		data = current->content;

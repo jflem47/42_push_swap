@@ -8,3 +8,4 @@ lib/.DS_Store
 *.o
 *.a
 push_swap
+/push_swap.dSYM
